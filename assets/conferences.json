@@ -1,0 +1,121 @@
+[
+  {
+    "id": "eacl-2026",
+    "name": "European Chapter of the Association for Computational Linguistics",
+    "series": "EACL",
+    "year": 2026,
+    "location": "Vienna, Austria",
+    "status": "Upcoming",
+    "tags": ["NLP", "ARR"],
+    "dates": [
+      {
+        "type": "Paper Submission",
+        "date": "2025-10-13"
+      },
+      {
+        "type": "Notification",
+        "date": "2025-12-15"
+      },
+      {
+        "type": "Camera Ready",
+        "date": "2026-01-15"
+      },
+      {
+        "type": "Conference",
+        "date": "2026-04-20"
+      }
+    ],
+    "links": {
+      "official": "https://2026.eacl.org",
+      "arr": "https://openreview.net/group?id=aclweb.org/EACL/2026/Conference"
+    }
+  },
+  {
+    "id": "neurips-2025",
+    "name": "Neural Information Processing Systems",
+    "series": "NeurIPS",
+    "year": 2025,
+    "location": "Vancouver, Canada",
+    "status": "Open",
+    "tags": ["ML", "Vision"],
+    "dates": [
+      {
+        "type": "Paper Submission",
+        "date": "2025-05-15"
+      },
+      {
+        "type": "Notification",
+        "date": "2025-09-25"
+      },
+      {
+        "type": "Conference",
+        "date": "2025-12-08"
+      }
+    ],
+    "links": {
+      "official": "https://neurips.cc/Conferences/2025"
+    }
+  },
+  {
+    "id": "icml-2025",
+    "name": "International Conference on Machine Learning",
+    "series": "ICML",
+    "year": 2025,
+    "location": "Honolulu, Hawaii",
+    "status": "Closed",
+    "tags": ["ML"],
+    "dates": [
+      {
+        "type": "Conference",
+        "date": "2025-07-21"
+      }
+    ],
+    "links": {
+      "official": "https://icml.cc/Conferences/2025"
+    }
+  },
+  {
+    "id": "cvpr-2025",
+    "name": "Computer Vision and Pattern Recognition",
+    "series": "CVPR",
+    "year": 2025,
+    "location": "Nashville, Tennessee",
+    "status": "Upcoming",
+    "tags": ["Vision", "ML"],
+    "dates": [
+      {
+        "type": "Conference",
+        "date": "2025-06-16"
+      }
+    ],
+    "links": {
+      "official": "https://cvpr2025.thecvf.com"
+    }
+  },
+  {
+    "id": "sp-2025",
+    "name": "IEEE Symposium on Security and Privacy",
+    "series": "S&P",
+    "year": 2025,
+    "location": "San Francisco, California",
+    "status": "Open",
+    "tags": ["Security"],
+    "dates": [
+      {
+        "type": "Paper Submission",
+        "date": "2025-06-01"
+      },
+      {
+        "type": "Notification",
+        "date": "2025-02-15"
+      },
+      {
+        "type": "Conference",
+        "date": "2025-05-19"
+      }
+    ],
+    "links": {
+      "official": "https://sp2025.ieee-security.org"
+    }
+  }
+]

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferences Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <h1 class="text-3xl font-bold text-gray-900">Conferences Hub</h1>
+            <p class="text-gray-600 mt-2">Discover and track academic conferences in computer science</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Search and Filters -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div class="flex flex-col lg:flex-row gap-4 mb-4">
+                <div class="flex-1">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Search conferences..." 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                </div>
+                <select id="sortSelect" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <option value="deadline">Sort by Deadline</option>
+                    <option value="name">Sort by Name</option>
+                    <option value="year">Sort by Year</option>
+                </select>
+            </div>
+            
+            <!-- Tag Filters -->
+            <div class="flex flex-wrap gap-2" id="tagFilters">
+                <button class="tag-filter px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-blue-100 hover:text-blue-700 transition-colors" data-tag="ARR">ARR</button>
+                <button class="tag-filter px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-blue-100 hover:text-blue-700 transition-colors" data-tag="NLP">NLP</button>
+                <button class="tag-filter px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-blue-100 hover:text-blue-700 transition-colors" data-tag="ML">ML</button>
+                <button class="tag-filter px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-blue-100 hover:text-blue-700 transition-colors" data-tag="Vision">Vision</button>
+                <button class="tag-filter px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm hover:bg-blue-100 hover:text-blue-700 transition-colors" data-tag="Security">Security</button>
+            </div>
+        </div>
+
+        <!-- Loading Skeleton -->
+        <div id="loadingSkeleton" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+                <div class="h-6 bg-gray-200 rounded mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
+                <div class="h-8 bg-gray-200 rounded"></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+                <div class="h-6 bg-gray-200 rounded mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
+                <div class="h-8 bg-gray-200 rounded"></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+                <div class="h-6 bg-gray-200 rounded mb-4"></div>
+                <div class="h-4 bg-gray-200 rounded mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
+                <div class="h-8 bg-gray-200 rounded"></div>
+            </div>
+        </div>
+
+        <!-- Conferences Grid -->
+        <div id="conferencesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
+        </div>
+
+        <!-- No Results -->
+        <div id="noResults" class="text-center py-12 hidden">
+            <p class="text-gray-500">No conferences found matching your criteria.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t mt-16">
+        <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-600">
+            <p>Maintained by Love</p>
+        </div>
+    </footer>
+
+    <script>
+        let conferences = [];
+        let filteredConferences = [];
+        let activeTags = new Set();
+
+        // Embedded conferences data
+        const conferencesData = [
+            {
+                "id": "eacl-2026",
+                "name": "European Chapter of the Association for Computational Linguistics",
+                "series": "EACL",
+                "year": 2026,
+                "location": "Rabat, Morocco",
+                "status": "Upcoming",
+                "tags": ["NLP", "ARR"],
+                "dates": [
+                { "type": "ARR Submission Deadline", "date": "2025-10-06" },
+                { "type": "Author Response & Discussion", "date": "2025-11-18 to 2025-11-24" },
+                { "type": "Commitment Deadline", "date": "2025-12-14" },
+                { "type": "Notification", "date": "2026-01-03" },
+                { "type": "Conference", "date": "2026-03-24 to 2026-03-29" }
+                ],
+                "links": {
+                "official": "https://2026.eacl.org",
+                "arr": "https://aclrollingreview.org/cfp"
+                }
+            },
+            {
+                "id": "neurips-2025",
+                "name": "Neural Information Processing Systems",
+                "series": "NeurIPS",
+                "year": 2025,
+                "location": "San Diego, California, USA",
+                "status": "Upcoming",
+                "tags": ["ML", "AI"],
+                "dates": [
+                { "type": "Conference", "date": "2025-11-30 to 2025-12-07" }
+                ],
+                "links": {
+                "official": "https://neurips.cc/Conferences/2025/Dates"
+                }
+            },
+            {
+                "id": "icml-2025",
+                "name": "International Conference on Machine Learning",
+                "series": "ICML",
+                "year": 2025,
+                "location": "Vancouver, Canada",
+                "status": "Closed",
+                "tags": ["ML"],
+                "dates": [
+                { "type": "Conference", "date": "2025-07-13 to 2025-07-19" }
+                ],
+                "links": {
+                "official": "https://icml.cc/Conferences/2025/Dates"
+                }
+            },
+            {
+                "id": "cvpr-2025",
+                "name": "Computer Vision and Pattern Recognition",
+                "series": "CVPR",
+                "year": 2025,
+                "location": "Nashville, Tennessee, USA",
+                "status": "Closed",
+                "tags": ["Vision", "ML"],
+                "dates": [
+                { "type": "Conference", "date": "2025-06-11 to 2025-06-15" }
+                ],
+                "links": {
+                "official": "https://cvpr.thecvf.com/Conferences/2025"
+                }
+            },
+            {
+                "id": "sp-2025",
+                "name": "IEEE Symposium on Security and Privacy",
+                "series": "S&P",
+                "year": 2025,
+                "location": "San Francisco, California, USA",
+                "status": "Closed",
+                "tags": ["Security"],
+                "dates": [
+                { "type": "Conference", "date": "2025-05-12 to 2025-05-15" }
+                ],
+                "links": {
+                "official": "https://sp2025.ieee-security.org"
+                }
+            },
+            {
+                "id": "aaai-2026",
+                "name": "AAAI Conference on Artificial Intelligence",
+                "series": "AAAI",
+                "year": 2026,
+                "location": "Singapore",
+                "status": "Upcoming",
+                "tags": ["AI", "NLP", "ML"],
+                "dates": [
+                    { "type": "Conference", "date": "2026-01-20 to 2026-01-27" }
+                ],
+                "links": {
+                    "official": "https://aaai.org/conference/aaai/aaai-26",
+                    "cfp": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+                }
+            },
+            {
+                "id": "www-2026",
+                "name": "The Web Conference 2026",
+                "series": "WWW",
+                "year": 2026,
+                "location": "Dubai, UAE",
+                "status": "Upcoming",
+                "tags": ["Web", "ACM", "Systems"],
+                "dates": [
+                    { "type": "Conference", "date": "2026-04-13 to 2026-04-17" }
+                ],
+                "links": {
+                    "official": "https://www2026.thewebconf.org",
+                    "cfp": "https://www2026.thewebconf.org/cfp"
+                }
+            }
+        ];
+
+        // Load conferences data
+        function loadConferences() {
+            conferences = conferencesData;
+            filteredConferences = [...conferences];
+            renderConferences();
+            document.getElementById('loadingSkeleton').classList.add('hidden');
+            document.getElementById('conferencesGrid').classList.remove('hidden');
+        }
+
+        // Render conferences
+        function renderConferences() {
+            const grid = document.getElementById('conferencesGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (filteredConferences.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            }
+            
+            grid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+            
+            grid.innerHTML = filteredConferences.map(conf => `
+                <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer p-6" onclick="window.location.href='./conferences/${conf.id}.html'">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-lg font-semibold text-gray-900">${conf.series} ${conf.year}</h3>
+                        <span class="px-2 py-1 text-xs rounded-full ${getStatusBadgeClass(conf.status)}">${conf.status}</span>
+                    </div>
+                    
+                    ${conf.location ? `<p class="text-gray-600 mb-3">${conf.location}</p>` : ''}
+                    
+                    <div class="mb-4">
+                        <h4 class="text-sm font-medium text-gray-700 mb-2">Upcoming Dates:</h4>
+                        ${conf.dates.slice(0, 2).map(date => `
+                            <div class="text-sm text-gray-600 mb-1">
+                                <span class="font-medium">${date.type}:</span> ${formatDate(date.date)}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="flex gap-2 mb-3">
+                        ${conf.tags.map(tag => `<span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        ${conf.links.official ? `<a href="${conf.links.official}" class="text-blue-600 hover:text-blue-800 text-sm" onclick="event.stopPropagation()">Official Site</a>` : ''}
+                        ${conf.links.arr ? `<a href="${conf.links.arr}" class="text-blue-600 hover:text-blue-800 text-sm" onclick="event.stopPropagation()">ARR</a>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Get status badge class
+        function getStatusBadgeClass(status) {
+            switch (status) {
+                case 'Open': return 'bg-green-100 text-green-800';
+                case 'Closed': return 'bg-red-100 text-red-800';
+                case 'Upcoming': return 'bg-yellow-100 text-yellow-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+        }
+
+        // Filter and sort functions
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            filteredConferences = conferences.filter(conf => {
+                const matchesSearch = !searchTerm || 
+                    conf.name.toLowerCase().includes(searchTerm) ||
+                    conf.series.toLowerCase().includes(searchTerm) ||
+                    conf.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                
+                const matchesTags = activeTags.size === 0 || 
+                    conf.tags.some(tag => activeTags.has(tag));
+                
+                return matchesSearch && matchesTags;
+            });
+            
+            applySorting();
+            renderConferences();
+        }
+
+        function applySorting() {
+            const sortBy = document.getElementById('sortSelect').value;
+            
+            filteredConferences.sort((a, b) => {
+                switch (sortBy) {
+                    case 'deadline':
+                        const aNextDate = new Date(a.dates[0]?.date || '9999-12-31');
+                        const bNextDate = new Date(b.dates[0]?.date || '9999-12-31');
+                        return aNextDate - bNextDate;
+                    case 'name':
+                        return a.name.localeCompare(b.name);
+                    case 'year':
+                        return b.year - a.year;
+                    default:
+                        return 0;
+                }
+            });
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('sortSelect').addEventListener('change', applyFilters);
+
+        document.querySelectorAll('.tag-filter').forEach(button => {
+            button.addEventListener('click', () => {
+                const tag = button.dataset.tag;
+                if (activeTags.has(tag)) {
+                    activeTags.delete(tag);
+                    button.classList.remove('bg-blue-500', 'text-white');
+                    button.classList.add('bg-gray-200', 'text-gray-700');
+                } else {
+                    activeTags.add(tag);
+                    button.classList.remove('bg-gray-200', 'text-gray-700');
+                    button.classList.add('bg-blue-500', 'text-white');
+                }
+                applyFilters();
+            });
+        });
+
+        // Initialize
+        loadConferences();
+    </script>
+</body>
+</html>
