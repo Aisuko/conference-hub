@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conferences Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4P7DT9R33"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q4P7DT9R33');
+    </script>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Header -->
@@ -229,7 +239,7 @@
             noResults.classList.add('hidden');
             
             grid.innerHTML = filteredConferences.map(conf => `
-                <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer p-6" onclick="window.location.href='./conferences/${conf.id}.html'">
+                <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer p-6" onclick="navigateToConference('${conf.id}')">
                     <div class="flex justify-between items-start mb-3">
                         <h3 class="text-lg font-semibold text-gray-900">${conf.series} ${conf.year}</h3>
                         <span class="px-2 py-1 text-xs rounded-full ${getStatusBadgeClass(conf.status)}">${conf.status}</span>
@@ -335,6 +345,17 @@
                 applyFilters();
             });
         });
+
+        // Navigate to conference page
+        function navigateToConference(conferenceId) {
+            // Check if dedicated page exists, otherwise use template
+            const dedicatedPages = ['eacl-2026'];
+            if (dedicatedPages.includes(conferenceId)) {
+                window.location.href = `./conferences/${conferenceId}.html`;
+            } else {
+                window.location.href = `./conferences/conference-template.html#${conferenceId}`;
+            }
+        }
 
         // Initialize
         loadConferences();

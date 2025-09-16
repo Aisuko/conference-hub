@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conference Details - Conferences Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4P7DT9R33"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q4P7DT9R33');
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <nav class="text-sm text-gray-600 mb-4">
+                <a href="../index.html" class="text-blue-600 hover:text-blue-800">Conferences</a>
+                <span class="mx-2">/</span>
+                <span id="conference-name">Conference</span>
+            </nav>
+            <h1 class="text-3xl font-bold text-gray-900" id="conference-title">Conference Details</h1>
+            <p class="text-gray-600 mt-2" id="conference-subtitle">Loading conference information...</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 py-8">
+        <!-- Overview -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Overview</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <div class="space-y-3" id="basic-info">
+                        <div><span class="font-medium">Series:</span> <span id="series">-</span></div>
+                        <div><span class="font-medium">Year:</span> <span id="year">-</span></div>
+                        <div><span class="font-medium">Location:</span> <span id="location">-</span></div>
+                        <div><span class="font-medium">Status:</span> <span id="status" class="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">-</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="space-y-3">
+                        <div><span class="font-medium">Tags:</span> <span id="tags"></span></div>
+                        <div class="space-y-2">
+                            <div><span class="font-medium">Links:</span></div>
+                            <div class="flex gap-3" id="links"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Update Notice -->
+        <section class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+            <div class="flex items-start">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-blue-800">Page Under Development</h3>
+                    <div class="mt-2 text-sm text-blue-700">
+                        <p>Detailed information for this conference is being updated. Please check back later or visit the official conference website for the most current information.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important Dates -->
+        <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Important Dates</h2>
+            <div id="dates-container">
+                <p class="text-gray-600">Dates will be updated when available.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Get conference ID from URL hash or pathname
+        let conferenceId = window.location.hash.substring(1);
+        if (!conferenceId) {
+            const urlPath = window.location.pathname;
+            conferenceId = urlPath.split('/').pop().replace('.html', '');
+        }
+        
+        // Load conference data from the main page
+        fetch('../assets/conferences.json')
+            .catch(() => {
+                // Fallback to embedded data if JSON file doesn't exist
+                return {
+                    json: () => [
+                        {
+                            "id": "eacl-2026",
+                            "name": "European Chapter of the Association for Computational Linguistics",
+                            "series": "EACL",
+                            "year": 2026,
+                            "location": "Rabat, Morocco",
+                            "status": "Upcoming",
+                            "tags": ["NLP", "ARR"],
+                            "dates": [
+                                { "type": "ARR Submission Deadline", "date": "2025-10-06" },
+                                { "type": "Conference", "date": "2026-03-24 to 2026-03-29" }
+                            ],
+                            "links": {
+                                "official": "https://2026.eacl.org",
+                                "arr": "https://aclrollingreview.org/cfp"
+                            }
+                        },
+                        {
+                            "id": "neurips-2025",
+                            "name": "Neural Information Processing Systems",
+                            "series": "NeurIPS",
+                            "year": 2025,
+                            "location": "San Diego, California, USA",
+                            "status": "Upcoming",
+                            "tags": ["ML", "AI"],
+                            "dates": [
+                                { "type": "Conference", "date": "2025-11-30 to 2025-12-07" }
+                            ],
+                            "links": {
+                                "official": "https://neurips.cc/Conferences/2025/Dates"
+                            }
+                        },
+                        {
+                            "id": "icml-2025",
+                            "name": "International Conference on Machine Learning",
+                            "series": "ICML",
+                            "year": 2025,
+                            "location": "Vancouver, Canada",
+                            "status": "Closed",
+                            "tags": ["ML"],
+                            "dates": [
+                                { "type": "Conference", "date": "2025-07-13 to 2025-07-19" }
+                            ],
+                            "links": {
+                                "official": "https://icml.cc/Conferences/2025/Dates"
+                            }
+                        },
+                        {
+                            "id": "cvpr-2025",
+                            "name": "Computer Vision and Pattern Recognition",
+                            "series": "CVPR",
+                            "year": 2025,
+                            "location": "Nashville, Tennessee, USA",
+                            "status": "Closed",
+                            "tags": ["Vision", "ML"],
+                            "dates": [
+                                { "type": "Conference", "date": "2025-06-11 to 2025-06-15" }
+                            ],
+                            "links": {
+                                "official": "https://cvpr.thecvf.com/Conferences/2025"
+                            }
+                        },
+                        {
+                            "id": "sp-2025",
+                            "name": "IEEE Symposium on Security and Privacy",
+                            "series": "S&P",
+                            "year": 2025,
+                            "location": "San Francisco, California, USA",
+                            "status": "Closed",
+                            "tags": ["Security"],
+                            "dates": [
+                                { "type": "Conference", "date": "2025-05-12 to 2025-05-15" }
+                            ],
+                            "links": {
+                                "official": "https://sp2025.ieee-security.org"
+                            }
+                        },
+                        {
+                            "id": "aaai-2026",
+                            "name": "AAAI Conference on Artificial Intelligence",
+                            "series": "AAAI",
+                            "year": 2026,
+                            "location": "Singapore",
+                            "status": "Upcoming",
+                            "tags": ["AI", "NLP", "ML"],
+                            "dates": [
+                                { "type": "Conference", "date": "2026-01-20 to 2026-01-27" }
+                            ],
+                            "links": {
+                                "official": "https://aaai.org/conference/aaai/aaai-26",
+                                "cfp": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+                            }
+                        },
+                        {
+                            "id": "www-2026",
+                            "name": "The Web Conference 2026",
+                            "series": "WWW",
+                            "year": 2026,
+                            "location": "Dubai, UAE",
+                            "status": "Upcoming",
+                            "tags": ["Web", "ACM", "Systems"],
+                            "dates": [
+                                { "type": "Conference", "date": "2026-04-13 to 2026-04-17" }
+                            ],
+                            "links": {
+                                "official": "https://www2026.thewebconf.org",
+                                "cfp": "https://www2026.thewebconf.org/cfp"
+                            }
+                        }
+                    ]
+                };
+            })
+            .then(response => response.json())
+            .then(conferences => {
+                const conference = conferences.find(c => c.id === conferenceId);
+                
+                if (conference) {
+                    // Update page content
+                    document.getElementById('conference-name').textContent = `${conference.series} ${conference.year}`;
+                    document.getElementById('conference-title').textContent = `${conference.series} ${conference.year}`;
+                    document.getElementById('conference-subtitle').textContent = conference.name;
+                    document.title = `${conference.series} ${conference.year} - Conferences Hub`;
+                    
+                    // Update overview
+                    document.getElementById('series').textContent = conference.series;
+                    document.getElementById('year').textContent = conference.year;
+                    document.getElementById('location').textContent = conference.location || 'TBD';
+                    
+                    const statusEl = document.getElementById('status');
+                    statusEl.textContent = conference.status;
+                    statusEl.className = `px-2 py-1 rounded-full text-sm ${getStatusClass(conference.status)}`;
+                    
+                    // Update tags
+                    const tagsEl = document.getElementById('tags');
+                    tagsEl.innerHTML = conference.tags.map(tag => 
+                        `<span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-sm mr-2">${tag}</span>`
+                    ).join('');
+                    
+                    // Update links
+                    const linksEl = document.getElementById('links');
+                    const linkElements = [];
+                    if (conference.links.official) {
+                        linkElements.push(`<a href="${conference.links.official}" class="text-blue-600 hover:text-blue-800">Official Site</a>`);
+                    }
+                    if (conference.links.arr) {
+                        linkElements.push(`<a href="${conference.links.arr}" class="text-blue-600 hover:text-blue-800">ARR Page</a>`);
+                    }
+                    if (conference.links.cfp) {
+                        linkElements.push(`<a href="${conference.links.cfp}" class="text-blue-600 hover:text-blue-800">Call for Papers</a>`);
+                    }
+                    linksEl.innerHTML = linkElements.join('');
+                    
+                    // Update dates
+                    if (conference.dates && conference.dates.length > 0) {
+                        const datesContainer = document.getElementById('dates-container');
+                        datesContainer.innerHTML = conference.dates.map(date => `
+                            <div class="mb-2">
+                                <span class="font-medium">${date.type}:</span>
+                                <span class="text-gray-600">${formatDate(date.date)}</span>
+                            </div>
+                        `).join('');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error loading conference data:', error);
+            });
+        
+        function getStatusClass(status) {
+            switch (status) {
+                case 'Open': return 'bg-green-100 text-green-800';
+                case 'Closed': return 'bg-red-100 text-red-800';
+                case 'Upcoming': return 'bg-yellow-100 text-yellow-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+        
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+        }
+    </script>
+</body>
+</html>
