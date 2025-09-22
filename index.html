@@ -212,6 +212,26 @@
                     "official": "https://www2026.thewebconf.org",
                     "cfp": "https://www2026.thewebconf.org/cfp"
                 }
+            },
+            {
+                "id": "www-2026-web4good",
+                "name": "WWW 2026 - Web for Good Track",
+                "series": "WWW",
+                "year": 2026,
+                "location": "Dubai, UAE",
+                "status": "Open",
+                "tags": ["Web", "Social Good", "AI"],
+                "dates": [
+                    { "type": "Abstract Submission", "date": "2025-11-23" },
+                    { "type": "Paper Submission", "date": "2025-11-30" },
+                    { "type": "Notification", "date": "2026-01-13" },
+                    { "type": "Camera-ready", "date": "2026-01-25" },
+                    { "type": "Conference", "date": "2026-04-13 to 2026-04-17" }
+                ],
+                "links": {
+                    "official": "https://www2026.thewebconf.org/calls/web4good.html",
+                    "cfp": "https://www2026.thewebconf.org/calls/web4good.html"
+                }
             }
         ];
 
@@ -349,7 +369,7 @@
         // Navigate to conference page
         function navigateToConference(conferenceId) {
             // Check if dedicated page exists, otherwise use template
-            const dedicatedPages = ['eacl-2026'];
+            const dedicatedPages = ['eacl-2026', 'www-2026-web4good'];
             if (dedicatedPages.includes(conferenceId)) {
                 window.location.href = `./conferences/${conferenceId}.html`;
             } else {
