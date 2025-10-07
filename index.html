@@ -103,175 +103,190 @@
 
         // Embedded conferences data
         const conferencesData = [
-            {
-                "id": "eacl-2026",
-                "name": "European Chapter of the Association for Computational Linguistics",
-                "series": "EACL",
-                "year": 2026,
-                "location": "Rabat, Morocco",
-                "status": "Upcoming",
-                "tags": ["NLP", "ARR"],
-                "dates": [
-                { "type": "ARR Submission Deadline", "date": "2025-10-06" },
-                { "type": "Author Response & Discussion", "date": "2025-11-18 to 2025-11-24" },
-                { "type": "Commitment Deadline", "date": "2025-12-14" },
-                { "type": "Notification", "date": "2026-01-03" },
-                { "type": "Conference", "date": "2026-03-24 to 2026-03-29" }
-                ],
-                "links": {
-                "official": "https://2026.eacl.org",
-                "arr": "https://aclrollingreview.org/cfp"
-                }
-            },
-            {
-                "id": "neurips-2025",
-                "name": "Neural Information Processing Systems",
-                "series": "NeurIPS",
-                "year": 2025,
-                "location": "San Diego, California, USA",
-                "status": "Upcoming",
-                "tags": ["ML", "AI"],
-                "dates": [
-                { "type": "Conference", "date": "2025-11-30 to 2025-12-07" }
-                ],
-                "links": {
-                "official": "https://neurips.cc/Conferences/2025/Dates"
-                }
-            },
-            {
-                "id": "icml-2025",
-                "name": "International Conference on Machine Learning",
-                "series": "ICML",
-                "year": 2025,
-                "location": "Vancouver, Canada",
-                "status": "Closed",
-                "tags": ["ML"],
-                "dates": [
-                { "type": "Conference", "date": "2025-07-13 to 2025-07-19" }
-                ],
-                "links": {
-                "official": "https://icml.cc/Conferences/2025/Dates"
-                }
-            },
-            {
-                "id": "cvpr-2025",
-                "name": "Computer Vision and Pattern Recognition",
-                "series": "CVPR",
-                "year": 2025,
-                "location": "Nashville, Tennessee, USA",
-                "status": "Closed",
-                "tags": ["Vision", "ML"],
-                "dates": [
-                { "type": "Conference", "date": "2025-06-11 to 2025-06-15" }
-                ],
-                "links": {
-                "official": "https://cvpr.thecvf.com/Conferences/2025"
-                }
-            },
-            {
-                "id": "sp-2025",
-                "name": "IEEE Symposium on Security and Privacy",
-                "series": "S&P",
-                "year": 2025,
-                "location": "San Francisco, California, USA",
-                "status": "Closed",
-                "tags": ["Security"],
-                "dates": [
-                { "type": "Conference", "date": "2025-05-12 to 2025-05-15" }
-                ],
-                "links": {
-                "official": "https://sp2025.ieee-security.org"
-                }
-            },
-            {
-                "id": "aaai-2026",
-                "name": "AAAI Conference on Artificial Intelligence",
-                "series": "AAAI",
-                "year": 2026,
-                "location": "Singapore",
-                "status": "Upcoming",
-                "tags": ["AI", "NLP", "ML"],
-                "dates": [
-                    { "type": "Conference", "date": "2026-01-20 to 2026-01-27" }
-                ],
-                "links": {
-                    "official": "https://aaai.org/conference/aaai/aaai-26",
-                    "cfp": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
-                }
-            },
-            {
-                "id": "ijcai-2026",
-                "name": "International Joint Conference on Artificial Intelligence",
-                "series": "IJCAI",
-                "year": 2026,
-                "location": "Bremen, Germany",
-                "status": "Upcoming",
-                "tags": ["AI", "ML"],
-                "dates": [
-                    { "type": "Paper Submission", "date": "2026-01-15" },
-                    { "type": "Notification", "date": "2026-04-15" },
-                    { "type": "Camera Ready", "date": "2026-05-15" },
-                    { "type": "Conference", "date": "2026-08-08" }
-                ],
-                "links": {
-                    "official": "https://www.ijcai.org"
-                }
-            },
-            {
-                "id": "sigir-2026",
-                "name": "International ACM SIGIR Conference on Research and Development in Information Retrieval",
-                "series": "SIGIR",
-                "year": 2026,
-                "location": "Tokyo, Japan",
-                "status": "Upcoming",
-                "tags": ["IR", "NLP"],
-                "dates": [
-                    { "type": "Paper Submission", "date": "2026-01-23" },
-                    { "type": "Notification", "date": "2026-03-20" },
-                    { "type": "Camera Ready", "date": "2026-04-17" },
-                    { "type": "Conference", "date": "2026-07-14" }
-                ],
-                "links": {
-                    "official": "https://sigir.org/sigir2026"
-                }
-            },
-            {
-                "id": "www-2026",
-                "name": "The Web Conference 2026",
-                "series": "WWW",
-                "year": 2026,
-                "location": "Dubai, UAE",
-                "status": "Upcoming",
-                "tags": ["Web", "ACM", "Systems"],
-                "dates": [
-                    { "type": "Conference", "date": "2026-04-13 to 2026-04-17" }
-                ],
-                "links": {
-                    "official": "https://www2026.thewebconf.org",
-                    "cfp": "https://www2026.thewebconf.org/cfp"
-                }
-            },
-            {
-                "id": "www-2026-web4good",
-                "name": "WWW 2026 - Web for Good Track",
-                "series": "WWW",
-                "year": 2026,
-                "location": "Dubai, UAE",
-                "status": "Open",
-                "tags": ["Web", "Social Good", "AI"],
-                "dates": [
-                    { "type": "Abstract Submission", "date": "2025-11-23" },
-                    { "type": "Paper Submission", "date": "2025-11-30" },
-                    { "type": "Notification", "date": "2026-01-13" },
-                    { "type": "Camera-ready", "date": "2026-01-25" },
-                    { "type": "Conference", "date": "2026-04-13 to 2026-04-17" }
-                ],
-                "links": {
-                    "official": "https://www2026.thewebconf.org/calls/web4good.html",
-                    "cfp": "https://www2026.thewebconf.org/calls/web4good.html"
-                }
+        {
+            "id": "eacl-2026",
+            "name": "European Chapter of the Association for Computational Linguistics",
+            "series": "EACL",
+            "year": 2026,
+            "location": "Rabat, Morocco",
+            "status": "Upcoming",
+            "tags": ["NLP", "ARR"],
+            "dates": [
+            { "type": "ARR Submission Deadline", "date": "2025-10-06" },
+            { "type": "Author Response & Discussion", "date": "2025-11-18 to 2025-11-24" },
+            { "type": "Commitment Deadline", "date": "2025-12-14" },
+            { "type": "Notification", "date": "2026-01-03" },
+            { "type": "Conference", "date": "2026-03-24 to 2026-03-29" }
+            ],
+            "links": {
+            "official": "https://2026.eacl.org",
+            "arr": "https://aclrollingreview.org/cfp"
             }
+        },
+        {
+            "id": "neurips-2025",
+            "name": "Neural Information Processing Systems",
+            "series": "NeurIPS",
+            "year": 2025,
+            "location": "San Diego, California, USA",
+            "status": "Upcoming",
+            "tags": ["ML", "AI"],
+            "dates": [
+            { "type": "Conference", "date": "2025-11-30 to 2025-12-07" }
+            ],
+            "links": {
+            "official": "https://neurips.cc/Conferences/2025/Dates"
+            }
+        },
+        {
+            "id": "icml-2025",
+            "name": "International Conference on Machine Learning",
+            "series": "ICML",
+            "year": 2025,
+            "location": "Vancouver, Canada",
+            "status": "Closed",
+            "tags": ["ML"],
+            "dates": [
+            { "type": "Conference", "date": "2025-07-13 to 2025-07-19" }
+            ],
+            "links": {
+            "official": "https://icml.cc/Conferences/2025/Dates"
+            }
+        },
+        {
+            "id": "cvpr-2025",
+            "name": "Computer Vision and Pattern Recognition",
+            "series": "CVPR",
+            "year": 2025,
+            "location": "Nashville, Tennessee, USA",
+            "status": "Closed",
+            "tags": ["Vision", "ML"],
+            "dates": [
+            { "type": "Conference", "date": "2025-06-11 to 2025-06-15" }
+            ],
+            "links": {
+            "official": "https://cvpr.thecvf.com/Conferences/2025"
+            }
+        },
+        {
+            "id": "sp-2025",
+            "name": "IEEE Symposium on Security and Privacy",
+            "series": "S&P",
+            "year": 2025,
+            "location": "San Francisco, California, USA",
+            "status": "Closed",
+            "tags": ["Security"],
+            "dates": [
+            { "type": "Conference", "date": "2025-05-12 to 2025-05-14" },
+            { "type": "Workshops", "date": "2025-05-15" }
+            ],
+            "links": {
+            "official": "https://sp2025.ieee-security.org"
+            }
+        },
+        {
+            "id": "aaai-2026",
+            "name": "AAAI Conference on Artificial Intelligence",
+            "series": "AAAI",
+            "year": 2026,
+            "location": "Singapore",
+            "status": "Upcoming",
+            "tags": ["AI", "NLP", "ML"],
+            "dates": [
+            { "type": "Conference", "date": "2026-01-20 to 2026-01-27" }
+            ],
+            "links": {
+            "official": "https://aaai.org/conference/aaai/aaai-26",
+            "cfp": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+            }
+        },
+        {
+            "id": "ijcai-2026",
+            "name": "International Joint Conference on Artificial Intelligence",
+            "series": "IJCAI",
+            "year": 2026,
+            "location": "Bremen, Germany",
+            "status": "Upcoming",
+            "tags": ["AI", "ML"],
+            "dates": [
+            { "type": "Conference", "date": "2026-08-15 to 2026-08-21" }
+            ],
+            "links": {
+            "official": "https://www.ijcai.org"
+            }
+        },
+        {
+            "id": "sigir-2026",
+            "name": "International ACM SIGIR Conference on Research and Development in Information Retrieval",
+            "series": "SIGIR",
+            "year": 2026,
+            "location": "TBD",
+            "status": "Upcoming",
+            "tags": ["IR", "NLP"],
+            "dates": [
+            { "type": "Paper Submission", "date": "TBD" },
+            { "type": "Notification", "date": "TBD" },
+            { "type": "Camera Ready", "date": "TBD" },
+            { "type": "Conference", "date": "TBD" }
+            ],
+            "links": {
+            "official": "https://sigir.org"
+            }
+        },
+        {
+            "id": "www-2026",
+            "name": "The Web Conference 2026",
+            "series": "WWW",
+            "year": 2026,
+            "location": "Dubai, UAE",
+            "status": "Upcoming",
+            "tags": ["Web", "ACM", "Systems"],
+            "dates": [
+            { "type": "Conference", "date": "2026-04-13 to 2026-04-17" }
+            ],
+            "links": {
+            "official": "https://www2026.thewebconf.org",
+            "cfp": "https://www2026.thewebconf.org/calls.html"
+            }
+        },
+        {
+            "id": "www-2026-web4good",
+            "name": "WWW 2026 - Web for Good Track",
+            "series": "WWW",
+            "year": 2026,
+            "location": "Dubai, UAE",
+            "status": "Open",
+            "tags": ["Web", "Social Good", "AI"],
+            "dates": [
+            { "type": "Abstract Submission", "date": "2025-11-10" },
+            { "type": "Paper Submission", "date": "2025-11-17" },
+            { "type": "Notification", "date": "2026-01-13" },
+            { "type": "Camera-ready", "date": "2026-01-25" },
+            { "type": "Conference", "date": "2026-04-13 to 2026-04-17" }
+            ],
+            "links": {
+            "official": "https://www2026.thewebconf.org/calls/web4good.html",
+            "cfp": "https://www2026.thewebconf.org/important-dates.html"
+            }
+        },
+        {
+            "id": "acl-2026",
+            "name": "Annual Meeting of the Association for Computational Linguistics",
+            "series": "ACL",
+            "year": 2026,
+            "location": "San Diego, California, USA",
+            "status": "Upcoming",
+            "tags": ["NLP", "ACL", "ARR"],
+            "dates": [
+            { "type": "Conference", "date": "2026-07-02 to 2026-07-07" }
+            ],
+            "links": {
+            "official": "https://2026.aclweb.org",
+            "arr": "https://aclrollingreview.org/cfp"
+            }
+        }
         ];
+
 
         // Load conferences data
         function loadConferences() {
@@ -407,7 +422,7 @@
         // Navigate to conference page
         function navigateToConference(conferenceId) {
             // Check if dedicated page exists, otherwise use template
-            const dedicatedPages = ['eacl-2026', 'www-2026-web4good'];
+            const dedicatedPages = ['eacl-2026', 'www-2026-web4good', 'sigir-2026', 'acl-2026'];
             if (dedicatedPages.includes(conferenceId)) {
                 window.location.href = `./conferences/${conferenceId}.html`;
             } else {
